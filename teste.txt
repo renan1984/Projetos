@@ -1,6 +1,2 @@
 teste master!!!
-<<<<<<< HEAD
 desenv 2
-=======
-develop
->>>>>>> 50a9f49f7eaff6dc9b3dac7bb52fb74d4eb64f96
