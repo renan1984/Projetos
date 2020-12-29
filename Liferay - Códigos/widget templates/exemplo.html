@@ -1,0 +1,73 @@
+<#if entries?has_content>
+
+	<#assign siteId =  themeDisplay.getSiteGroupId()>
+	...siteId: ${siteId} <br/>
+	
+	<#list entries as curEntry>
+	<#assign assetRenderer = curEntry.getAssetRenderer() />
+
+		<#if (curEntry.getAssetRenderer().getArticle())??>
+		
+			
+			<#assign viewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, curEntry, true) />
+		
+		
+			<#assign className = assetRenderer.getClassName() />
+			...className: ${className} <br/>
+		
+			<#assign article = curEntry.getAssetRenderer().getArticle() />
+			...article: ${article} <br/>
+			....article.uuid: ${article.uuid} <br/>
+			....article.groupId: ${article.groupId} <br/>
+		
+			<#assign titulo = assetRenderer.getTitle(locale) />
+			...titulo: ${titulo} <br/>
+			
+			<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
+			...docXml: ${docXml} <br/>
+			
+			<#assign rootElement = docXml.getRootElement() />
+			...rootElement: ${rootElement} <br/>
+			
+			--------------<br/>
+			<#list rootElement.elements() as dynamicElement>
+
+				
+				->
+				<#assign imageJSONString = dynamicElement.element("dynamic-content").getText()/>
+				imageJSONString: ${imageJSONString}
+				<-
+				
+				<#assign elementos = dynamicElement.elements() />
+				<#list elementos as elemento>
+					[${elemento.getText()}] <br/>
+				</#list>
+				
+			</#list>
+			
+			<#assign beer_map = {"classPK":39090,"groupId":"35833","name":"info.jpg","alt":"","title":"info.jpg","type":"document","uuid":"2d3eba52-dfcb-a893-f4c8-90840099018c","fileEntryId":"39090","resourcePrimKey":"39197"} />
+			${beer_map.uuid}<br/>
+			${beer_map.name}<br/>
+			--------------<br/>
+			
+			<#assign descricao = docXml.valueOf("//dynamic-element[@name='Descricao']/dynamic-content/text()") />
+			...descricao: ${descricao} <br/>
+
+			<#assign linkPagina =  docXml.valueOf("//dynamic-element[@name='Link']/dynamic-content/text()") />
+			...linkPagina: ${linkPagina}<br/><br/>
+			
+			<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
+			...imagem: ${imagem}<br/>
+			<#assign jsonImagem = imagem?eval>
+			imageUUID: ${jsonImagem.uuid}
+			<br/>
+			
+			<img class="img-responsive" src="/documents/${siteId}/${jsonImagem.uuid}" alt=""><br/>
+			<a href="${viewURL}">Link</a><br/>
+			
+			----------------------------------------------------------------------------------------------------<br/>
+			----------------------------------------------------------------------------------------------------<br/>
+		</#if>
+	</#list>
+</#if>
+

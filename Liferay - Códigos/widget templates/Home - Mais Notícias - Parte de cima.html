@@ -1,0 +1,34 @@
+
+<!-- Mais Notícias - Parte de Superior -->
+<#if entries?has_content>
+
+	<#list entries as curEntry>
+
+		<#assign assetRenderer = curEntry.getAssetRenderer() />
+			<#if (curEntry.getAssetRenderer().getArticle())??>
+
+				<#assign siteId =  themeDisplay.getSiteGroupId() />
+				<#assign viewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, curEntry, true) />
+				<#assign titulo = assetRenderer.getTitle(locale) />
+				<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
+				<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
+				<#assign texto =  docXml.valueOf("//dynamic-element[@name='Texto']/dynamic-content/text()") />
+				<#assign descricao =  docXml.valueOf("//dynamic-element[@name='Descricao']/dynamic-content/text()") />
+				<#assign jsonImagem = imagem?eval />
+				
+					<div class="visit-tailor-area fix">
+						<div class="tailor-offers">
+							<img src="/documents/${siteId}/${jsonImagem.uuid}" alt="">
+						</div>
+						<div class="tailor-details">
+							<h2>${titulo}</h2>
+							<p>${texto}</p>
+							<p class="pera-bottom">${descricao}</p>
+						</div>
+					</div>
+
+		</#if>
+	</#list>
+		
+</#if>
+<!-- _Mais Notícias - Parte de Superior -->

@@ -1,0 +1,51 @@
+<!-- Header Start -->
+<#if entries?has_content>
+<div class="header-area header-transparent">
+	<div class="main-header ">
+		<div class="header-bottom  header-sticky">
+			<div class="container-fluid">
+				<div class="row align-items-center">
+					<!-- Logo -->
+					<div class="col-xl-2 col-lg-2">
+						<div class="logo">
+							<a href="index.html"><img width="300" height="auto" src="assets/img/logo/logo.png"
+									alt=""></a>
+						</div>
+					</div>
+					<div class="col-xl-10 col-lg-10">
+						<div class="menu-wrapper  d-flex align-items-center justify-content-end">
+							<!-- Main-menu -->
+							<div class="main-menu d-none d-lg-block">
+								<nav>
+									<ul id="navigation">
+											
+											<#list entries as navigationEntry>
+												<li><a href="#">${navigationEntry.getName()}</a>
+
+													<#if navigationEntry.hasChildren()>
+														<ul class="submenu">
+														<#list navigationEntry.getChildren() as children>
+															<li><a href="#">${children.getName()}</a></li>
+														</#list>
+														</ul>
+													</#if>
+
+												</li>
+											</#list>
+
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+					<!-- Mobile Menu -->
+					<div class="col-12">
+						<div class="mobile_menu d-block d-lg-none"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Header End -->
+</#if>

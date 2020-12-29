@@ -1,0 +1,29 @@
+<#if entries?has_content>
+	
+	<#list entries as curEntry>
+	<#assign assetRenderer = curEntry.getAssetRenderer() />
+
+		<#if (curEntry.getAssetRenderer().getArticle())??>
+		
+			<#assign siteId =  themeDisplay.getSiteGroupId()>
+			<#assign viewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, curEntry, true) />
+		
+			<#assign titulo = assetRenderer.getTitle(locale) />
+			...titulo: ${titulo} <br/>
+			
+			<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
+
+			
+			<#assign descricao = docXml.valueOf("//dynamic-element[@name='Descricao']/dynamic-content/text()") />
+			...descricao: ${descricao} <br/>
+			
+			<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
+			<#assign jsonImagem = imagem?eval>
+			
+			<img class="img-responsive" src="/documents/${siteId}/${jsonImagem.uuid}" alt=""><br/>
+			<a href="${viewURL}">Link</a><br/>
+
+		</#if>
+	</#list>
+</#if>
+
