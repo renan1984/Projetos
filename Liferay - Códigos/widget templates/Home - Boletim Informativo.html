@@ -1,0 +1,51 @@
+<!-- Boletim Informativo -->
+<#if entries?has_content>
+
+	<#list entries as curEntry>
+
+		<#assign assetRenderer = curEntry.getAssetRenderer() />
+		<#if (curEntry.getAssetRenderer().getArticle())??>
+		
+			<#assign siteId =  themeDisplay.getSiteGroupId() />
+			<#assign viewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, curEntry, true) />
+			<#assign titulo = assetRenderer.getTitle(locale) />
+			<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
+			<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
+			<#assign texto =  docXml.valueOf("//dynamic-element[@name='Texto']/dynamic-content/text()") />
+			<#assign subtitulo =  docXml.valueOf("//dynamic-element[@name='Subtitulo']/dynamic-content/text()") />
+			<#assign jsonImagem = imagem?eval />
+
+				<section class="about-low-area section-padding30">
+					<div class="container">
+						<div class="row justify-content-between">
+							<div class="col-xl-6 col-lg-6 col-md-10">
+								<div class="about-caption mb-50">
+									<!-- Section Tittle -->
+									<div class="section-tittle mb-35">
+										<h2>${titulo}</h2>
+									</div>
+									<p class="about-cap-top">${subtitulo}</p>
+									<p>${texto}</p>
+									<a href="#" class="btn black-btn">Saiba mais</a>
+								</div>
+							</div>
+							<div class="offset-xl-0 col-xl-6 offset-lg-0 col-lg-6 col-md-9 offset-md-1 offset-sm-1">
+								<div class="about-right-cap">
+									<div class="about-right-img">
+										<img src="/documents/${siteId}/${jsonImagem.uuid}" alt="">
+									</div>
+									<div class="img-cap">
+										<span>PODCAST</span>
+										<p>Ouça já</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+		</#if>
+	</#list>
+
+</#if>
+<!-- _Boletim Informativo -->
