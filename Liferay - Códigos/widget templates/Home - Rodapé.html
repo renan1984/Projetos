@@ -21,23 +21,31 @@
 											<#assign titulo = assetRenderer.getTitle(locale) />
 											<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
 											<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
-											<#assign jsonImagem = imagem?eval />
 											<#assign texto =  docXml.valueOf("//dynamic-element[@name='Texto']/dynamic-content/text()") />
 											<#assign email =  docXml.valueOf("//dynamic-element[@name='Email']/dynamic-content/text()") />
 											<#assign telefone =  docXml.valueOf("//dynamic-element[@name='Telefone']/dynamic-content/text()") />
 											
 											<div class="footer-logo mb-35">
 												<a href="index.html">
-													<img width="200" src="/documents/${siteId}/${jsonImagem.uuid}"	alt="">
+													<#if (imagem?? && imagem != '')>
+														<#assign jsonImagem = imagem?eval />
+														<img src="/documents/${siteId}/${jsonImagem.uuid}" width="200" alt="">
+													</#if>
 												</a>
 											</div>
 											<div class="footer-tittle">
+												<#if (texto?? && texto != '')>
 												<div class="footer-pera">
 													<p>${texto}</p>
 												</div>
+												</#if>
 												<ul class="mb-40">
-													<li class="number"><a href="#">${telefone}</a></li>
-													<li class="number2"><a href="#">${email}</a></li>
+													<#if (telefone?? && telefone != '')>
+														<li class="number"><a href="#">${telefone}</a></li>
+													</#if>
+													<#if (email?? && email != '')>
+														<li class="number2"><a href="#">${email}</a></li>
+													</#if>
 												</ul>
 											</div>
 
@@ -97,31 +105,6 @@
             </div>
             <!-- Footer End-->
         </div>
-        <section id="govsp-rodape">
-            <link rel="stylesheet" type="text/css" href="https://saopaulo.sp.gov.br/barra-govsp/css/rodape-sp.css?v2.1">
-            <div id="govsp-footerGlobal">
-                <ul class="govsph-links">
-                    <div id="govsp-links-footer">
-                        <li class="govsp-link-rodape">
-							<a class="govsp-links-footer" href="https://www.ouvidoria.sp.gov.br/Portal/Default.aspx" target="_blank">Ouvidoria</a>
-                        </li>
-                        <li class="govsp-link-rodape">
-							<a class="govsp-links-footer" href="http://www.transparencia.sp.gov.br/" target="_blank">Transparência</a>
-						</li>
-                        <li class="govsp-link-rodape">
-							<a class="govsp-links-footer no-border" href="http://www.sic.sp.gov.br/" target="_blank">SIC</a>
-						</li>
-                    </div>
-                    <li class="govsp-link-rodape">
-						<img class="govsph-logo-rodape" src="https://saopaulo.sp.gov.br/barra-govsp/img/logo-rodape.png" />
-					</li>
-                    <li class="govsp-link-rodape">
-						<img class="govsph-logo-rodape logo-negativo" src="https://saopaulo.sp.gov.br/barra-govsp/img/logo-rodape-negativo.png" />
-					</li>
-                </ul>
-            </div>
-            <div id="govsp-footer-bottom" class="govsp-azul"></div>
-        </section>
     </footer>
 </#if>
 <!-- _Rodapé -->

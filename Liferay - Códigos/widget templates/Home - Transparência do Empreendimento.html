@@ -33,16 +33,46 @@
 									<#assign titulo = assetRenderer.getTitle(locale) />
 									<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
 									<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
-									<#assign jsonImagem = imagem?eval />
+									<#assign Link =  docXml.valueOf("//dynamic-element[@name='Link']/dynamic-content/text()") />
+									
+									<#if Link?? && Link != "">
+										<#list Link?split("@") as item>
+											<#if item_index == 0>
+												<#assign linkPageId = item?number>
+											</#if>
+											<#if item_index == 1>
+												<#if item == "private">
+													<#assign linkPrivate = true>
+												<#else>
+													<#assign linkPrivate = false>
+												</#if>
+											</#if>
+											<#if item_index = 2>
+												<#assign linkGroupId = item?number>
+											</#if>
+										</#list>
+										
+										<#assign layoutLocalService = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
+										<#assign pageLayout = layoutLocalService.getLayout(linkGroupId, linkPrivate, linkPageId) />
+										<#assign linkPagina = portalUtil.getLayoutFriendlyURL(pageLayout, themeDisplay) />
+									</#if>
+									
 									
 									<div class="col-lg-4 col-md-6">
 										<div class="single-project mb-30">
-											<div class="project-img">
-												<img src="/documents/${siteId}/${jsonImagem.uuid}" width="370" alt="">
-											</div>
+
+											<#if (imagem?? && imagem != '')>
+												<#assign jsonImagem = imagem?eval />
+												<div class="project-img">
+													<img src="/documents/${siteId}/${jsonImagem.uuid}" width="370" alt="">
+												</div>
+											</#if>
+
 											<div class="project-cap">
 												<a href="${viewURL}" class="plus-btn"><i class="ti-plus"></i></a>
-												<h4><a href="${viewURL}">${titulo}</a></h4>
+												<#if (linkPagina?? && linkPagina != '')>
+													<h4><a href="${linkPagina}">${titulo}</a></h4>
+												</#if>
 											</div>
 										</div>
 									</div>

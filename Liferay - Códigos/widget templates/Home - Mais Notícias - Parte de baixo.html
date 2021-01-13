@@ -16,13 +16,14 @@
 									<#assign titulo = assetRenderer.getTitle(locale) />
 									<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
 									<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
-									<#assign descricaoHome =  docXml.valueOf("//dynamic-element[@name='descricaoHome']/dynamic-content/text()") />
-									<#assign jsonImagem = imagem?eval />
 									
 									<div class="col-lg-4">
 										<div class="single-cat">
 											<div class="cat-icon">
-												<img src="/documents/${siteId}/${jsonImagem.uuid}" alt="">
+												<#if (imagem?? && imagem != '')>
+													<#assign jsonImagem = imagem?eval />
+													<img src="/documents/${siteId}/${jsonImagem.uuid}" alt="">
+												</#if>
 											</div>
 											<div class="cat-cap">
 												<h5><a href="#">${titulo}</a></h5>

@@ -5,9 +5,27 @@
 	
 	<#list entries as curEntry>
 	<#assign assetRenderer = curEntry.getAssetRenderer() />
-
-		<#if (curEntry.getAssetRenderer().getArticle())??>
 		
+		-------------<br/>
+		<#assign fields = curEntry.getAssetRenderer().getDDMFormValuesReader().getDDMFormValues().getDDMFormFieldValues()/>
+		<#assign layoutLocalService = ServiceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService")/>
+		
+		<!--List<DDMFormFieldValue>-->
+		<#list fields as field>
+			...field.getName: ${field.getName()};<br/>
+			...field.getValue: ${field.getValue().getString(locale)};<br/>
+			
+			<#if (field.getName() == "Link")>
+				<!-- link to page structure field -->
+				<#assign linkMap = field.getValue().getString(locale)?eval />
+				<#assign pageURL = layoutLocalService.getLayout(linkMap.groupId?number, linkMap.privateLayout, linkMap.layoutId?number).getFriendlyURL() />
+				<a href="${pageURL}" class="hidden"><span class="link"></span></a><br/>
+			</#if>
+			
+		</#list>
+		-------------<br/>
+
+		<#if (curEntry.getAssetRenderer().getArticle())??>		
 			
 			<#assign viewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, curEntry, true) />
 		

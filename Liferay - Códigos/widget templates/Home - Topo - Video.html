@@ -1,0 +1,31 @@
+<!-- Topo - Video -->
+<#if entries?has_content>
+	<div class="slider">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-xl-8 col-lg-9 col-md-12">
+					<div class="hero__caption text-center">
+					
+						<#list entries as curEntry>
+							<#assign assetRenderer = curEntry.getAssetRenderer() />
+							<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
+							<#assign textoPri =  docXml.valueOf("//dynamic-element[@name='TextoPrincipal']/dynamic-content/text()") />
+							<#assign textoSec =  docXml.valueOf("//dynamic-element[@name='TextoSecundario']/dynamic-content/text()") />
+
+							<#if (textoPri?? && textoPri != '')>
+								<h1 data-animation="bounceIn" data-delay="0.2s">${textoPri}</h1>
+							</#if>	
+
+							<#if (textoSec?? && textoSec != '')>
+								<p data-animation="fadeInUp" data-delay="0.4s">${textoSec}</p>
+							</#if>
+							
+						</#list>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</#if>
+<!-- _Topo - Video -->

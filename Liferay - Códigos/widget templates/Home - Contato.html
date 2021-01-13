@@ -12,7 +12,6 @@
 			<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
 			<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
 			<#assign texto =  docXml.valueOf("//dynamic-element[@name='Texto']/dynamic-content/text()") />
-			<#assign jsonImagem = imagem?eval />
 			
 			<div class="contact-form">
 				<div class="container">
@@ -23,7 +22,9 @@
 									<div class="col-xl-12 col-lg-11 col-md-8 col-lg-7 col-sm-9">
 										<div class="section-tittle mb-30">
 											<h2>${titulo}</h2>
-											<p>${texto}</p>
+											<#if (texto?? && texto != '')>
+												<p>${texto}</p>
+											</#if>
 										</div>
 									</div>
 								</div>
@@ -68,9 +69,12 @@
 						</div>
 					</div>
 				</div>
-				<div class="contact-img">
-					<img src="/documents/${siteId}/${jsonImagem.uuid}" alt="">
-				</div>
+				<#if (imagem?? && imagem != '')>
+					<#assign jsonImagem = imagem?eval />
+					<div class="contact-img">
+						<img src="/documents/${siteId}/${jsonImagem.uuid}" alt="">
+					</div>
+				</#if>
 			</div>
 
 		</#if>
