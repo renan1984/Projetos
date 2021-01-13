@@ -21,23 +21,32 @@
 											<#assign titulo = assetRenderer.getTitle(locale) />
 											<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
 											<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
-											<#assign jsonImagem = imagem?eval />
 											<#assign texto =  docXml.valueOf("//dynamic-element[@name='Texto']/dynamic-content/text()") />
 											<#assign email =  docXml.valueOf("//dynamic-element[@name='Email']/dynamic-content/text()") />
 											<#assign telefone =  docXml.valueOf("//dynamic-element[@name='Telefone']/dynamic-content/text()") />
 											
 											<div class="footer-logo mb-35">
 												<a href="index.html">
-													<img width="200" src="/documents/${siteId}/${jsonImagem.uuid}"	alt="">
+													<#if (imagem?? && imagem != '')>
+														<#assign jsonImagem = imagem?eval />
+														<img width="200" src="/documents/${siteId}/${jsonImagem.uuid}"	alt="">
+													</#if>
+												
 												</a>
 											</div>
 											<div class="footer-tittle">
 												<div class="footer-pera">
-													<p>${texto}</p>
+													<#if (texto?? && texto != '')>
+														<p>${texto}</p>
+													</#if>
 												</div>
 												<ul class="mb-40">
-													<li class="number"><a href="#">${telefone}</a></li>
-													<li class="number2"><a href="#">${email}</a></li>
+													<#if (telefone?? && telefone != '')>
+														<li class="number"><a href="#">${telefone}</a></li>
+													</#if>
+													<#if (email?? && email != '')>
+														<li class="number2"><a href="#">${email}</a></li>
+													</#if>
 												</ul>
 											</div>
 
