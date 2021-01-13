@@ -19,7 +19,7 @@
 									<#assign assetRenderer = curEntry.getAssetRenderer() />
 									<#if (curEntry.getAssetRenderer().getArticle())??>
 									
-										<#assign siteId =  themeDisplay.getSiteGroupId() />
+										<#assign siteId = themeDisplay.getSiteGroupId() />
 										<#assign viewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, curEntry, true) />
 										<#assign titulo = assetRenderer.getTitle(locale) />
 										<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
@@ -35,7 +35,7 @@
 													</div>
 												</#if>
 												<div class="cat-cap">
-													<h5><a href="services.html">${titulo}</a></h5>
+													<h5><a href="#">${titulo}</a></h5>
 													<#if (descricaoHome?? && descricaoHome != '')>
 														<p>${descricaoHome}</p>
 													</#if>

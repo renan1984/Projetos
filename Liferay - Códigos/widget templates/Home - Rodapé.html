@@ -26,7 +26,7 @@
 											<#assign telefone =  docXml.valueOf("//dynamic-element[@name='Telefone']/dynamic-content/text()") />
 											
 											<div class="footer-logo mb-35">
-												<a href="index.html">
+												<a href="#">
 													<#if (imagem?? && imagem != '')>
 														<#assign jsonImagem = imagem?eval />
 														<img width="200" src="/documents/${siteId}/${jsonImagem.uuid}"	alt="">
@@ -42,10 +42,10 @@
 												</div>
 												<ul class="mb-40">
 													<#if (telefone?? && telefone != '')>
-														<li class="number"><a href="#">${telefone}</a></li>
+														<li class="number">${telefone}</li>
 													</#if>
 													<#if (email?? && email != '')>
-														<li class="number2"><a href="#">${email}</a></li>
+														<li class="number2">${email}</li>
 													</#if>
 												</ul>
 											</div>

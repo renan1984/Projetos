@@ -4,46 +4,30 @@
 
 <html class="${root_css_class}" dir="<@liferay.language key="lang.dir" />" lang="${w3c_language_id}">
 
-<!-- Rodoanel Tema -->
-
 <head>
 	<title>${the_title} - ${company_name}</title>
 
 	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
 
 	<@liferay_util["include"] page=top_head_include />
-		
+	
 	<!-- CSS here -->
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/slicknav.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/flaticon.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/progressbar_barfiller.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/gijgo.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/animate.min.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/animated-headline.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/magnific-popup.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/fontawesome-all.min.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/themify-icons.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/slick.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/nice-select.css">
-	<link rel="stylesheet" href="http://localhost/rodoanel/assets/css/style.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/slicknav.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/animate.min.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/hamburgers.min.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/slick.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/nice-select.css">
+    <link rel="stylesheet" href="http://localhost/rodoanel/assets/css/style.css">
 
 </head>
 
 <body class="${css_class}">
-
-	<!-- ? Preloader Start -->
-	<div id="preloader-active">
-	    <div class="preloader d-flex align-items-center justify-content-center">
-	        <div class="preloader-inner position-relative">
-	            <div class="preloader-circle"></div>
-	            <div class="preloader-img pere-text">
-	                <img src="http://localhost/rodoanel/assets/img/logo/loder.png" alt="">
-	            </div>
-	        </div>
-	    </div>
-	</div>
 
 	<section class="govsph-topo">
 
@@ -115,7 +99,6 @@
         <script src="https://saopaulo.sp.gov.br/barra-govsp/js/script-contrast.js"></script>
         <script src="https://saopaulo.sp.gov.br/barra-govsp/js/script-tamanho-fonte.js"></script>
         <script src="https://saopaulo.sp.gov.br/barra-govsp/js/script-scroll.js"></script>
-
     </section>
 
 	<@liferay_ui["quick-access"] contentId="#main-content" />
@@ -125,31 +108,8 @@
 	<@liferay.control_menu />
 	
 	<div class="container-fluid" id="wrapper">
-		<header id="banner" role="banner">
-			<#if !is_signed_in>
-				<a data-redirect="${is_login_redirect_required?string}" href="${sign_in_url}" id="sign-in" rel="nofollow">${sign_in_text}</a>
-			</#if>
-		</header>
-	
 		<section id="content">
 			<h1 class="hide-accessible">${the_title}</h1>
-			
-			<!-- Topo - Video -->
-			<section>
-				<video width="100%" height="auto" id="video" autoplay muted loop>
-					<source src="http://localhost/rodoanel/assets/video/video.mp4" type="video/mp4">
-					<object>
-						<embed src="http://localhost/rodoanel/assets/video/video.mp4" type="video/mp4" autostart="true" hidden="true">
-			
-					</object>
-					Formato não suportado
-				</video>
-			
-				<script>
-					document.getElementById('video').play();
-				</script>
-			</section>
-			<!-- _Topo - Video -->
 	
 			<#if selectable>
 				<@liferay_util["include"] page=content_include />
@@ -164,37 +124,30 @@
 			</#if>
 		</section>
 	
-		<img src="http://localhost/leandro/assets/img/gallery/footer-bg.png" class="section-bg2" />
-		
-		<section id="govsp-rodape">
-			    <link rel="stylesheet" type="text/css" href="https://saopaulo.sp.gov.br/barra-govsp/css/rodape-sp.css?v2.1">
-			    <div id="govsp-footerGlobal">
-			        <ul class="govsph-links">
-			            <div id="govsp-links-footer">
-			                <li class="govsp-link-rodape">
-								<a class="govsp-links-footer" href="https://www.ouvidoria.sp.gov.br/Portal/Default.aspx" target="_blank">Ouvidoria</a>
-			                </li>
-			                <li class="govsp-link-rodape">
-								<a class="govsp-links-footer" href="http://www.transparencia.sp.gov.br/" target="_blank">Transparência</a>
-							</li>
-			                <li class="govsp-link-rodape">
-								<a class="govsp-links-footer no-border" href="http://www.sic.sp.gov.br/" target="_blank">SIC</a>
-							</li>
-			            </div>
-			            <li class="govsp-link-rodape">
-							<img class="govsph-logo-rodape" src="https://saopaulo.sp.gov.br/barra-govsp/img/logo-rodape.png" />
-						</li>
-			            <li class="govsp-link-rodape">
-							<img class="govsph-logo-rodape logo-negativo" src="https://saopaulo.sp.gov.br/barra-govsp/img/logo-rodape-negativo.png" />
-						</li>
-			        </ul>
-			    </div>
-			    <div id="govsp-footer-bottom" class="govsp-azul"></div>
-			</section>
-	
-		</section>
-	
-		<footer id="footer">
+		<footer id="footer" role="contentinfo">
+
+			<section id="govsp-rodape">
+                <link rel="stylesheet" type="text/css" href="https://saopaulo.sp.gov.br/barra-govsp/css/rodape-sp.css?v2.1">
+                <div id="govsp-footerGlobal">
+                    <ul class="govsph-links">
+                        <div id="govsp-links-footer">
+                            <li class="govsp-link-rodape">
+                            	<a class="govsp-links-footer" href="https://www.ouvidoria.sp.gov.br/Portal/Default.aspx" target="_blank">Ouvidoria</a>
+                            </li>
+                            <li class="govsp-link-rodape">
+                            	<a class="govsp-links-footer" href="http://www.transparencia.sp.gov.br/" target="_blank">Transparência</a>
+                            </li>
+                            <li class="govsp-link-rodape">
+                            	<a class="govsp-links-footer no-border" href="http://www.sic.sp.gov.br/" target="_blank">SIC</a>
+                            </li>
+                        </div>
+                        <li class="govsp-link-rodape"><img class="govsph-logo-rodape" src="https://saopaulo.sp.gov.br/barra-govsp/img/logo-rodape.png" /></li>
+                        <li class="govsp-link-rodape"><img class="govsph-logo-rodape logo-negativo" src="https://saopaulo.sp.gov.br/barra-govsp/img/logo-rodape-negativo.png" /></li>
+                    </ul>
+                </div>
+                <div id="govsp-footer-bottom" class="govsp-azul"></div>
+            </section>
+
 		</footer>
 	</div>
 	

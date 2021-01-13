@@ -19,19 +19,18 @@
 								<nav>
 									<ul id="navigation">
 											
-											<#list entries as navigationEntry>
-												<li><a href="#">${navigationEntry.getName()}</a>
+										<#list entries as navigationEntry>
+											<li><a href="${navigationEntry.getURL()}">${navigationEntry.getName()}</a>
+												<#if navigationEntry.hasChildren()>
+													<ul class="submenu">
+													<#list navigationEntry.getChildren() as children>
+														<li><a href="${children.getURL()}">${children.getName()}</a></li>
+													</#list>
+													</ul>
+												</#if>
 
-													<#if navigationEntry.hasChildren()>
-														<ul class="submenu">
-														<#list navigationEntry.getChildren() as children>
-															<li><a href="#">${children.getName()}</a></li>
-														</#list>
-														</ul>
-													</#if>
-
-												</li>
-											</#list>
+											</li>
+										</#list>
 
 									</ul>
 								</nav>
