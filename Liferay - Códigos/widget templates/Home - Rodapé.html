@@ -1,7 +1,7 @@
 <!-- Rodapé -->
 <#if entries?has_content>
 <footer>
-        <div class="footer-wrapper section-bg2" data-background="http://localhost/rodoanel/assets/img/gallery/footer-bg.png">
+        <div class="footer-wrapper">
             <!-- Footer Start-->
             <div class="footer-area footer-padding">
                 <div class="container">
@@ -21,31 +21,23 @@
 											<#assign titulo = assetRenderer.getTitle(locale) />
 											<#assign docXml = saxReaderUtil.read(assetRenderer.getArticle().getContent()) />
 											<#assign imagem =  docXml.valueOf("//dynamic-element[@name='Imagem']/dynamic-content/text()") />
+											<#assign jsonImagem = imagem?eval />
 											<#assign texto =  docXml.valueOf("//dynamic-element[@name='Texto']/dynamic-content/text()") />
 											<#assign email =  docXml.valueOf("//dynamic-element[@name='Email']/dynamic-content/text()") />
 											<#assign telefone =  docXml.valueOf("//dynamic-element[@name='Telefone']/dynamic-content/text()") />
 											
 											<div class="footer-logo mb-35">
 												<a href="index.html">
-													<#if (imagem?? && imagem != '')>
-														<#assign jsonImagem = imagem?eval />
-														<img src="/documents/${siteId}/${jsonImagem.uuid}" width="200" alt="">
-													</#if>
+													<img width="200" src="/documents/${siteId}/${jsonImagem.uuid}"	alt="">
 												</a>
 											</div>
 											<div class="footer-tittle">
-												<#if (texto?? && texto != '')>
 												<div class="footer-pera">
 													<p>${texto}</p>
 												</div>
-												</#if>
 												<ul class="mb-40">
-													<#if (telefone?? && telefone != '')>
-														<li class="number"><a href="#">${telefone}</a></li>
-													</#if>
-													<#if (email?? && email != '')>
-														<li class="number2"><a href="#">${email}</a></li>
-													</#if>
+													<li class="number"><a href="#">${telefone}</a></li>
+													<li class="number2"><a href="#">${email}</a></li>
 												</ul>
 											</div>
 
@@ -105,6 +97,7 @@
             </div>
             <!-- Footer End-->
         </div>
+       
     </footer>
 </#if>
 <!-- _Rodapé -->
